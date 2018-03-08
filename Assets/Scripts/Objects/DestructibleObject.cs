@@ -18,12 +18,30 @@ public class DestructibleObject : Actor
 
     public override void InflictDamage()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
-
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5);
+        foreach(Collider2D actor in colliders)
+        {
+            actor.GetComponent<Actor>().TakeDamage(damage);
+        }
     }
 
-    public override void TakeDamage()
+    public override void TakeDamage(float damageTaken)
     {
-        throw new NotImplementedException();
+        if (state != DestructionState.Destroyed)
+        {
+            Debug.Log("Taking damage");
+            currentHealth -= damageTaken;
+            if (state == DestructionState.Intact && currentHealth <= maxHealth / 2)
+            {
+                state = DestructionState.Damaged;
+                GetComponent<Renderer>().material.color = Color.yellow;
+            }
+            if (state == DestructionState.Damaged && currentHealth <= 0)
+            {
+                state = DestructionState.Destroyed;
+                GetComponent<Renderer>().material.color = Color.red;
+                InflictDamage();
+            }
+        }
     }
 }

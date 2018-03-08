@@ -4,9 +4,8 @@ using UnityEngine;
 
 public abstract class Actor : MonoBehaviour {
 
-    protected float health;
-    protected float damage;
+    public float damage, maxHealth, currentHealth;
 
     public abstract void InflictDamage();
-    public abstract void TakeDamage();
+    public abstract void TakeDamage(float damageTaken);
 }
