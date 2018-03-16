@@ -24,6 +24,6 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.D))
             moveDirection += Vector2.right;
 
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 }

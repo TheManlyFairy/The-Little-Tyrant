@@ -11,6 +11,7 @@ public class PlayerMouseActions : MonoBehaviour {
     void Start()
     {
         player = GetComponent<Player>();
+        StartCoroutine(LookAtCursor());
     }
 
 	void Update()
@@ -53,6 +54,20 @@ public class PlayerMouseActions : MonoBehaviour {
         {
             NPC character = clickedObject.collider.GetComponent<NPC>();
             character.BecomeControlled();
+        }
+    }
+
+    IEnumerator LookAtCursor()
+    {
+        Vector3 mousePos;
+
+        while (true)
+        {
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 difference = mousePos - player.transform.position;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+            yield return null;
         }
     }
 }

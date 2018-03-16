@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : Actor
 {
 
-    static float maxFear = 5, currentFear = 0;
+    static float maxFear = 5, currentFear = 5;
 
     void Start()
     {

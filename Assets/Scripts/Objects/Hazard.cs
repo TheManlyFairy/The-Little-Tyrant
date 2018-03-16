@@ -8,10 +8,13 @@ public class Hazard : DestructibleObject {
     {
         currentHealth -= damageTaken;
         anim.Play("TakeHit");
+
+        if (OnTakeDamage != null)
+            OnTakeDamage(damageTaken);
+
         if (state == DestructionState.Intact && currentHealth <= 0)
         {
             state = DestructionState.Destroyed;
-            spriteRenderer.sprite = Destroyed;
             Player.GainFear(fearValue);
             InflictDamage();
         }
@@ -21,8 +24,7 @@ public class Hazard : DestructibleObject {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 8);
         foreach (Collider2D actor in colliders)
         {
-            Debug.Log(actor.name);
-            actor.GetComponent<Actor>().TakeDamage(damage);
+           actor.GetComponent<Actor>().TakeDamage(damage);
         }
     }
 }

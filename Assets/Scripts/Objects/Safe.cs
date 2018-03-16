@@ -4,24 +4,38 @@ using UnityEngine;
 
 public class Safe : DestructibleObject {
 
+    public override void InflictDamage()
+    {
+
+    }
     public override void TakeDamage(float damageTaken)
     {
         currentHealth -= damageTaken;
+
         anim.Play("TakeHit");
-        if (state == DestructionState.Intact && currentHealth <= maxHealth / 2)
+
+        if (OnTakeDamage != null)
+        {
+            OnTakeDamage(damageTaken);
+        }
+
+        if (state == DestructionState.Intact && HPRatio <= 0.5f)
         {
             state = DestructionState.Damaged;
-            spriteRenderer.sprite = Damaged;
         }
-        if (state == DestructionState.Damaged && currentHealth <= 0)
+        if (state == DestructionState.Damaged && HPRatio <= 0)
         {
-            state = DestructionState.Destroyed;
-            spriteRenderer.sprite = Destroyed;
+            Destruction();
+        }
+    } 
+
+    void Destruction()
+    {
+        state = DestructionState.Destroyed;
+        if (OnDestruction!=null)
+        {
+            OnDestruction();
             Player.GainFear(fearValue);
         }
-    }
-    public override void InflictDamage()
-    {
-        
     }
 }

@@ -12,14 +12,10 @@ public abstract class DestructibleObject : Actor
     public float fearValue;
     public DestructionState State { get { return state; } }
 
-    public Sprite Intact, Damaged, Destroyed;
-    protected SpriteRenderer spriteRenderer;
     protected Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Intact;
     }
 }
