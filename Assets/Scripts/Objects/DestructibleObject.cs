@@ -3,45 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleObject : Actor
+public abstract class DestructibleObject : Actor
 {
 
-    enum DestructionState { Intact, Damaged, Destroyed };
-    DestructionState state = DestructionState.Intact;
+    public enum DestructionState { Intact, Damaged, Destroyed };
+    protected DestructionState state = DestructionState.Intact;
 
     public float fearValue;
+    public DestructionState State { get { return state; } }
+
+    public Sprite Intact, Damaged, Destroyed;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator anim;
 
     void Start()
     {
-        GetComponent<Renderer>().material.color = Color.green;
-    }
-
-    public override void InflictDamage()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5);
-        foreach(Collider2D actor in colliders)
-        {
-            actor.GetComponent<Actor>().TakeDamage(damage);
-        }
-    }
-
-    public override void TakeDamage(float damageTaken)
-    {
-        if (state != DestructionState.Destroyed)
-        {
-            Debug.Log("Taking damage");
-            currentHealth -= damageTaken;
-            if (state == DestructionState.Intact && currentHealth <= maxHealth / 2)
-            {
-                state = DestructionState.Damaged;
-                GetComponent<Renderer>().material.color = Color.yellow;
-            }
-            if (state == DestructionState.Damaged && currentHealth <= 0)
-            {
-                state = DestructionState.Destroyed;
-                GetComponent<Renderer>().material.color = Color.red;
-                InflictDamage();
-            }
-        }
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = Intact;
     }
 }
