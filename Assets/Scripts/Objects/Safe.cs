@@ -12,8 +12,6 @@ public class Safe : DestructibleObject {
     {
         currentHealth -= damageTaken;
 
-        anim.Play("TakeHit");
-
         if (OnTakeDamage != null)
         {
             OnTakeDamage(damageTaken);

@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Player
+  - NPC
+  - Object
   - 
   - 
   - 

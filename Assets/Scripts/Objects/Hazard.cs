@@ -7,7 +7,6 @@ public class Hazard : DestructibleObject {
     public override void TakeDamage(float damageTaken)
     {
         currentHealth -= damageTaken;
-        anim.Play("TakeHit");
 
         if (OnTakeDamage != null)
             OnTakeDamage(damageTaken);
