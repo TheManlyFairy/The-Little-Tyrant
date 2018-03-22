@@ -20,8 +20,8 @@ public class Player : Actor
     public override void TakeDamage(float damageTaken)
     {
         currentHealth -= damageTaken;
-        if (currentHealth <= maxHealth / 2)
-            GetComponent<Renderer>().material.color = Color.yellow;
+        if (OnTakeDamage != null)
+            OnTakeDamage(damageTaken);
     }
     public void TakeOver(NPC ownedNPC)
     {

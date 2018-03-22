@@ -19,37 +19,48 @@ public class PlayerMouseActions : MonoBehaviour {
         //transform.LookAt(Input.mousePosition);
         if(Input.GetMouseButtonDown(0))
         {
-            SearchObjectToDamage();
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+            if(clickedObject)
+            {
+                if(clickedObject.collider.GetComponent<DestructibleObject>())
+                    SearchObjectToDamage();
+            }
+                
         }
 
         if(Input.GetMouseButtonDown(1))
         {
-            TakeControl();
+            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+            if(clickedObject)
+            {
+                if(clickedObject.collider.GetComponent<NPC>())
+                {
+                    NPC unit = clickedObject.collider.GetComponent<NPC>();
+                    if (UnitManager.IsManaging(unit))
+                        UnitManager.RemoveUnit(unit);
+                    else
+                        UnitManager.AddUnit(unit);
+                }
+            }
+            
         }
     }
 
     void SearchObjectToDamage()
     {
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+        DestructibleObject dObject = clickedObject.collider.GetComponent<DestructibleObject>();
+        Vector2 closestPointOnObject = clickedObject.collider.bounds.ClosestPoint(transform.position);
 
-        if (clickedObject && clickedObject.collider.GetComponent<DestructibleObject>())
+        if (Vector2.Distance(transform.position, closestPointOnObject) < 5f && dObject.State != DestructibleObject.DestructionState.Destroyed)
         {
-            DestructibleObject dObject = clickedObject.collider.GetComponent<DestructibleObject>();
-            Vector2 closestPointOnObject = clickedObject.collider.bounds.ClosestPoint(transform.position);
-
-            if (Vector2.Distance(transform.position, closestPointOnObject) < 5f && dObject.State != DestructibleObject.DestructionState.Destroyed)
-            {
-                dObject.TakeDamage(player.damage);
-            }
+            dObject.TakeDamage(player.damage);
         }
     }
 
     void TakeControl()
     {
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
-
         if (clickedObject && clickedObject.collider.GetComponent<NPC>())
         {
             NPC character = clickedObject.collider.GetComponent<NPC>();
