@@ -16,36 +16,54 @@ public class PlayerMouseActions : MonoBehaviour {
 
 	void Update()
     {
-        //transform.LookAt(Input.mousePosition);
-        if(Input.GetMouseButtonDown(0))
-        {
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
-            if(clickedObject)
-            {
-                if(clickedObject.collider.GetComponent<DestructibleObject>())
-                    SearchObjectToDamage();
-            }
-                
-        }
+       if(Input.GetMouseButtonDown(0))
+            LeftClickCommands();
 
         if(Input.GetMouseButtonDown(1))
+            RightClickCommands();
+    }
+
+    void LeftClickCommands()
+    {
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+        if (clickedObject)
         {
-            Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
-            if(clickedObject)
+            if (clickedObject.collider.GetComponent<DestructibleObject>())
             {
-                if(clickedObject.collider.GetComponent<NPC>())
-                {
-                    NPC unit = clickedObject.collider.GetComponent<NPC>();
-                    if (UnitManager.IsManaging(unit))
-                        UnitManager.RemoveUnit(unit);
-                    else
-                        UnitManager.AddUnit(unit);
-                }
+                if (UnitManager.HasSelectedUnits())
+                    UnitManager.DirectAttack(clickedObject.collider.GetComponent<DestructibleObject>());
+                else
+                    SearchObjectToDamage();
             }
-            
+
+            else if (clickedObject.collider.GetComponent<NPC>())
+            {
+                NPC unit = clickedObject.collider.GetComponent<NPC>();
+                if (UnitManager.IsManaging(unit))
+                    UnitManager.SelectDeselect(unit);
+            }
+            else if (UnitManager.HasSelectedUnits())
+                UnitManager.DirectMovement(mouseWorldPos);
+
         }
+    }
+    void RightClickCommands()
+    {
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        clickedObject = Physics2D.Raycast(mouseWorldPos, Vector2.zero);
+        if (clickedObject)
+        {
+            if (clickedObject.collider.GetComponent<NPC>())
+            {
+                NPC unit = clickedObject.collider.GetComponent<NPC>();
+                if (UnitManager.IsManaging(unit))
+                    UnitManager.RemoveUnit(unit);
+                else if (player.currentFear > unit.fearToBeControlled)
+                    UnitManager.AddUnit(unit);
+            }
+        }
+
     }
 
     void SearchObjectToDamage()
@@ -56,15 +74,6 @@ public class PlayerMouseActions : MonoBehaviour {
         if (Vector2.Distance(transform.position, closestPointOnObject) < 5f && dObject.State != DestructibleObject.DestructionState.Destroyed)
         {
             dObject.TakeDamage(player.damage);
-        }
-    }
-
-    void TakeControl()
-    {
-        if (clickedObject && clickedObject.collider.GetComponent<NPC>())
-        {
-            NPC character = clickedObject.collider.GetComponent<NPC>();
-            character.BecomeControlled();
         }
     }
 

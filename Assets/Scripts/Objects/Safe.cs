@@ -33,7 +33,7 @@ public class Safe : DestructibleObject {
         if (OnDestruction!=null)
         {
             OnDestruction();
-            Player.GainFear(fearValue);
+            //Player.GainFear(fearValue);
         }
     }
 }

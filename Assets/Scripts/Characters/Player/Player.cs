@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : Actor
 {
 
-    static float maxFear = 5, currentFear = 5;
+    public float maxFear = 5, currentFear = 5;
 
     void Start()
     {
@@ -29,13 +29,13 @@ public class Player : Actor
         ownedNPC.state = NPC.StateOfMind.ControlledAlive;
     }
 
-    public static void GainFear(float fearValue)
+    public void GainFear(float fearValue)
     {
         currentFear += fearValue;
         if (currentFear > maxFear)
             currentFear = maxFear;
     }
-    public static bool ReduceFear(float fearValue)
+    public bool ReduceFear(float fearValue)
     {
         if (fearValue > currentFear)
             return false;

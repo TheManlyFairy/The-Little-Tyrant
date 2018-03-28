@@ -155,12 +155,12 @@ Prefab:
     - target: {fileID: 224603399919041522, guid: 8c66199bab0edf744a5ddcf55e8bef39,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.581
       objectReference: {fileID: 0}
     - target: {fileID: 224603399919041522, guid: 8c66199bab0edf744a5ddcf55e8bef39,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c66199bab0edf744a5ddcf55e8bef39, type: 2}
@@ -570,13 +570,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   player: {fileID: 0}
-  fearToBeControlled: 3
+  fearToBeControlled: 2
   moveSpeed: 16
   rotationSpeed: 3
   state: 0
+  PointMarker: {fileID: 1251948792994976, guid: 01a9dbd20aa5d72498aea804d2eacfd4,
+    type: 2}
 --- !u!61 &391116118
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -737,6 +739,8 @@ MonoBehaviour:
   damage: 0.75
   maxHealth: 5
   currentHealth: 3
+  maxFear: 50
+  currentFear: 50
 --- !u!212 &443002697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -849,13 +853,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   player: {fileID: 0}
-  fearToBeControlled: 3
+  fearToBeControlled: 2
   moveSpeed: 16
   rotationSpeed: 3
   state: 0
+  PointMarker: {fileID: 1251948792994976, guid: 01a9dbd20aa5d72498aea804d2eacfd4,
+    type: 2}
 --- !u!61 &552616975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1222,7 +1228,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4120221556932600, guid: 4e1b46dd837d61047bc5b44ee5dc8184, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -15.1
+      value: 20.4
       objectReference: {fileID: 0}
     - target: {fileID: 4120221556932600, guid: 4e1b46dd837d61047bc5b44ee5dc8184, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1295,13 +1301,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   player: {fileID: 0}
-  fearToBeControlled: 3
+  fearToBeControlled: 2
   moveSpeed: 16
   rotationSpeed: 3
   state: 0
+  PointMarker: {fileID: 1251948792994976, guid: 01a9dbd20aa5d72498aea804d2eacfd4,
+    type: 2}
 --- !u!61 &1058209043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1614,13 +1622,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   player: {fileID: 0}
-  fearToBeControlled: 3
+  fearToBeControlled: 2
   moveSpeed: 16
   rotationSpeed: 3
   state: 0
+  PointMarker: {fileID: 1251948792994976, guid: 01a9dbd20aa5d72498aea804d2eacfd4,
+    type: 2}
 --- !u!1 &1514471053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1879719509}
   - component: {fileID: 1879719506}
+  - component: {fileID: 1879719507}
   m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
@@ -1872,6 +1883,31 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!61 &1879719507
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1879719505}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.1, y: 4.58}
+    newSize: {x: 6.1, y: 4.58}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.1, y: 4.58}
+  m_EdgeRadius: 0
 --- !u!4 &1879719509
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,13 +2019,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1.5
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 5
+  currentHealth: 5
   player: {fileID: 0}
-  fearToBeControlled: 3
+  fearToBeControlled: 2
   moveSpeed: 16
   rotationSpeed: 3
   state: 0
+  PointMarker: {fileID: 1251948792994976, guid: 01a9dbd20aa5d72498aea804d2eacfd4,
+    type: 2}
 --- !u!61 &2077305886
 BoxCollider2D:
   m_ObjectHideFlags: 0

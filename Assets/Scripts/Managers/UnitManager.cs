@@ -13,11 +13,15 @@ public class UnitManager : MonoBehaviour
 
     static NPC[] controlledUnits;
     static Button[] controlButtons;
+    static List<NPC> selectedUnits;
+    static Player player;
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
         manager = this;
         controlledUnits = new NPC[armySize];
+        selectedUnits = new List<NPC>();
         InitButtons();
     }
 
@@ -32,6 +36,10 @@ public class UnitManager : MonoBehaviour
             controlButtons[i].transform.SetParent(transform);
             controlButtons[i].transform.localScale = new Vector2(1, 1);
             controlButtons[i].interactable = false;
+            controlButtons[i].onClick.AddListener(delegate
+            {
+                //link button to SelectDeselect units;
+            });
 
         }
     }
@@ -42,22 +50,25 @@ public class UnitManager : MonoBehaviour
                 return true;
         return false;
     }
-
     public static bool AddUnit(NPC unit)
     {
-        for (int i = 0; i < manager.armySize; i++)
+        if (player.currentFear >= unit.fearToBeControlled)
         {
-            if (controlledUnits[i] == null)
+            player.ReduceFear(unit.fearToBeControlled);
+            for (int i = 0; i < manager.armySize; i++)
             {
-                controlledUnits[i] = unit;
-                controlButtons[i].interactable = true;
-                controlButtons[i].image.sprite = unit.GetComponent<SpriteRenderer>().sprite;
-                return true;
+                if (controlledUnits[i] == null)
+                {
+                    controlledUnits[i] = unit;
+                    controlButtons[i].image.sprite = unit.GetComponent<SpriteRenderer>().sprite;
+                    controlButtons[i].interactable = true;
+                    unit.BecomeControlled();
+                    return true;
+                }
             }
         }
         return false;
     }
-
     public static void RemoveUnit(NPC unit)
     {
         for (int i = 0; i < manager.armySize; i++)
@@ -69,5 +80,42 @@ public class UnitManager : MonoBehaviour
                 controlButtons[i].image.sprite = null;
             }
         }
+    }
+    public static void SelectDeselect(NPC unit)
+    {
+        if (selectedUnits.Contains(unit))
+        {
+            selectedUnits.Remove(unit);
+            unit.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else
+        {
+            selectedUnits.Add(unit);
+            unit.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+    }
+    public static void DeselectAll()
+    {
+        foreach(NPC unit in selectedUnits)
+        {
+            unit.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        selectedUnits.Clear();
+    }
+    public static bool HasSelectedUnits()
+    {
+        return selectedUnits.Count != 0;
+    }
+    public static void DirectMovement(Vector2 destination)
+    {
+        foreach (NPC unit in selectedUnits)
+            unit.WalkToPoint(destination);
+        DeselectAll();
+    }
+    public static void DirectAttack(Actor target)
+    {
+        foreach (NPC unit in selectedUnits)
+            unit.Attack(target);
+        DeselectAll();
     }
 }
