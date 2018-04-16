@@ -36,7 +36,10 @@ public class NPC : Actor
         StopAllCoroutines();
         StartCoroutine(Attack());
     }
-
+    public void ReleaseFromControl()
+    {
+        state = StateOfMind.FreeAlive;
+    }
     public override void InflictDamage()
     {
         throw new NotImplementedException();
@@ -80,7 +83,6 @@ public class NPC : Actor
             dist = Vector2.Distance(transform.position, destination);
         }
         StopCoroutine(WalkToPoint());
-        StartCoroutine(Attack());
     }
     IEnumerator Attack()
     {

@@ -75,6 +75,7 @@ public class UnitManager : MonoBehaviour
         {
             if (controlledUnits[i] && controlledUnits[i].Equals(unit))
             {
+                controlledUnits[i].ReleaseFromControl();
                 controlledUnits[i] = null;
                 controlButtons[i].interactable = false;
                 controlButtons[i].image.sprite = null;
@@ -92,6 +93,23 @@ public class UnitManager : MonoBehaviour
         {
             selectedUnits.Add(unit);
             unit.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+    }
+    public static void SelectDeselectByIndex(int index)
+    {
+        Debug.Log("Selecting");
+        if (controlledUnits[index] != null)
+        {
+            if (selectedUnits.Contains(controlledUnits[index]))
+            {
+                selectedUnits.Remove(controlledUnits[index]);
+                controlledUnits[index].GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            else
+            {
+                selectedUnits.Add(controlledUnits[index]);
+                controlledUnits[index].GetComponent<SpriteRenderer>().color = Color.red;
+            }
         }
     }
     public static void DeselectAll()
