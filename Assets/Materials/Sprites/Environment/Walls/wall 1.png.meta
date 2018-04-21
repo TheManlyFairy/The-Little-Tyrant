@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: 9a3489ed20d5dae4d9013e36962d495b
-timeCreated: 1521280973
+guid: ef7087b689e8f6a4eba6302b6da416d4
+timeCreated: 1524245866
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Chair Sheet 600_0
-    21300002: Chair Sheet 600_1
-    21300004: Chair Sheet 600_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -43,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -91,49 +88,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Chair Sheet 600_0
-      rect:
-        serializedVersion: 2
-        x: 26
-        y: 18
-        width: 600
-        height: 708
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Chair Sheet 600_1
-      rect:
-        serializedVersion: 2
-        x: 697
-        y: 19
-        width: 600
-        height: 712
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Chair Sheet 600_2
-      rect:
-        serializedVersion: 2
-        x: 1370
-        y: 21
-        width: 600
-        height: 702
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
     physicsShape: []
   spritePackingTag: 

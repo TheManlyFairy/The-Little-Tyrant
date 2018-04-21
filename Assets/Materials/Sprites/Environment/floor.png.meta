@@ -1,12 +1,18 @@
 fileFormatVersion: 2
-guid: 9a3489ed20d5dae4d9013e36962d495b
-timeCreated: 1521280973
+guid: ac89dc7bbc45ccd45b607d340d164396
+timeCreated: 1524241723
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Chair Sheet 600_0
-    21300002: Chair Sheet 600_1
-    21300004: Chair Sheet 600_2
+    21300000: floor_0
+    21300002: floor_1
+    21300004: floor_2
+    21300006: floor_3
+    21300008: floor_4
+    21300010: floor_5
+    21300012: floor_6
+    21300014: floor_7
+    21300016: floor_8
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -93,13 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chair Sheet 600_0
+      name: floor_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 18
+        x: 0
+        y: 1200
         width: 600
-        height: 708
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,13 +113,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Chair Sheet 600_1
+      name: floor_1
       rect:
         serializedVersion: 2
-        x: 697
-        y: 19
+        x: 600
+        y: 1200
         width: 600
-        height: 712
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,13 +127,97 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Chair Sheet 600_2
+      name: floor_2
       rect:
         serializedVersion: 2
-        x: 1370
-        y: 21
+        x: 1200
+        y: 1200
         width: 600
-        height: 702
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 600
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_5
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 600
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_7
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 600
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: floor_8
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
